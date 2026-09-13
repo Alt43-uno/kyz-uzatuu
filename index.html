@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<!-- saved from url=(0054)https://begimai-kyz-uzatuu.amirasanov523.chatgpt.site/ -->
-<html lang="ky"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<!doctype html>
+<html lang="ky">
+<head>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#8d0f21">
   <meta name="description" content="Бегимайдын кыз узатуу тоюна чакыруу — 6-октябрь, 2026-жыл.">
@@ -270,7 +270,7 @@
     }
 
     main { overflow: hidden; }
-    #invite .lead { font-size: 1.12rem; font-weight: 600; line-height: 1.7; }
+    #invite .lead { font-family: var(--serif); font-size: clamp(1.35rem, 4.8vw, 1.65rem); font-weight: 600; line-height: 1.5; color: #fff8ed; text-wrap: pretty; }
     .invite-name { display: block; margin: 18px 0 24px; color: var(--gold-soft); font: italic 600 clamp(2.8rem, 10vw, 4.5rem)/1.1 var(--serif); }
     .section.photo-section { position: relative; isolation: isolate; overflow: hidden; color: white; background: #4e0712; padding-top: max(360px, 48svh); padding-bottom: 70px; }
     .section-backdrop { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; transform: scale(1.04); transition: transform 2s ease-out; }
@@ -439,11 +439,11 @@
     </div>
   </section>
 
-  <div class="page" id="invitation" inert="">
+  <div class="page" id="invitation" inert>
     <header class="hero" id="hero" tabindex="-1">
       <div class="hero-gallery" aria-hidden="true">
-        <img class="photo-slide" src="./Бегимай _ Кыз узатуу_files/IMG_5267.JPG" alt="" width="1280" height="1920" fetchpriority="high">
-        <img class="photo-slide" src="./Бегимай _ Кыз узатуу_files/IMG_5268.JPG" alt="" width="1280" height="1920" loading="eager">
+        <img class="photo-slide" src="assets/IMG_5267.JPG" alt="" width="1280" height="1920" fetchpriority="high">
+        <img class="photo-slide" src="assets/IMG_5268.JPG" alt="" width="1280" height="1920" loading="eager">
         <span class="light-sweep"></span>
         <span class="gold-dust"></span>
       </div>
@@ -452,20 +452,21 @@
         <p class="event-name">КЫЗ УЗАТУУ</p>
         <p class="hero-invitation">ЧАКЫРУУ</p>
       </div>
-      <a class="scroll-cue" href="https://begimai-kyz-uzatuu.amirasanov523.chatgpt.site/#invite" aria-label="Чакырууну окуу"></a>
+      <a class="scroll-cue" href="#invite" aria-label="Чакырууну окуу"></a>
     </header>
 
     <main>
       <section class="section photo-section reveal" id="invite">
-        <img class="section-backdrop" src="./Бегимай _ Кыз узатуу_files/hero-together-2.jpg" alt="" aria-hidden="true" width="1280" height="1920" loading="lazy" decoding="async">
+        <img class="section-backdrop" src="assets/hero-together-2.jpg" alt="" aria-hidden="true" width="1280" height="1920" loading="lazy" decoding="async">
         <div class="ornament" aria-hidden="true"><span>◆</span></div>
         <h2>Урматтуу коноктор!</h2>
-        <p class="lead">Сиздерди ажарлуу кызыбыз <span class="invite-name">Бегимайдын</span> кыз узатуу тоюна арналган салтанаттуу кечебизге келип, ак дасторконубуздан даам татып, батаңыздарды берип, кадырлуу коногубуз болуп кетүүгө чакырабыз!</p>
+        <p class="lead">Сиздерди ажарлуу кызыбыз <span class="invite-name">Бегимайдын</span> Кыз узатуу аземине арналган салтанаттуу кечебизге келип, ак дасторконубуздан даам татып, батаңыздарды берип, кадырлуу коногубуз болуп кетүүгө чакырабыз!</p>
+        <p class="signature">Тойдун ээлери<br>Биздин үй-бүлө</p>
       </section>
 
 
       <section class="section red photo-section reveal" aria-labelledby="date-title">
-        <img class="section-backdrop" src="./Бегимай _ Кыз узатуу_files/hero-together-1.jpg" alt="" aria-hidden="true" width="1280" height="1920" loading="lazy" decoding="async">
+        <img class="section-backdrop" src="assets/hero-together-1.jpg" alt="" aria-hidden="true" width="1280" height="1920" loading="lazy" decoding="async">
         <div class="ornament" aria-hidden="true"><span>◆</span></div>
         <h2 id="date-title">Той күнү</h2>
         <div class="date-card">
@@ -474,10 +475,10 @@
           <div class="side">2026-жыл</div>
         </div>
         <div class="countdown" aria-label="Тойго чейинки убакыт">
-          <div><strong id="days">22</strong><span>КҮН</span></div>
-          <div><strong id="hours">23</strong><span>СААТ</span></div>
-          <div><strong id="minutes">53</strong><span>МҮНӨТ</span></div>
-          <div><strong id="seconds">17</strong><span>СЕКУНД</span></div>
+          <div><strong id="days">—</strong><span>КҮН</span></div>
+          <div><strong id="hours">—</strong><span>СААТ</span></div>
+          <div><strong id="minutes">—</strong><span>МҮНӨТ</span></div>
+          <div><strong id="seconds">—</strong><span>СЕКУНД</span></div>
         </div>
       </section>
 
@@ -486,16 +487,16 @@
         <h2 id="details-title">Маалымат</h2>
         <div class="details">
           <article class="detail">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
             <h3>Башталышы</h3>
             <p>17:00</p>
           </article>
           <article class="detail">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.4"></circle></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.4"/></svg>
             <h3>Bellagio Banquet Hall</h3>
             <p>Бишкек шаары</p>
             <p><a href="https://2gis.kg/bishkek/geo/15763234351037100" target="_top" style="color: inherit; text-underline-offset: 4px;">Улица Шабдан баатыра, 36к/1</a></p>
-            <a class="map-link" href="https://2gis.kg/bishkek/geo/15763234351037100" target="_top" aria-label="Bellagio Banquet Hall дарегин 2GIS&#39;те ачуу">2GIS'те ачуу</a>
+            <a class="map-link" href="https://2gis.kg/bishkek/geo/15763234351037100" target="_top" aria-label="Bellagio Banquet Hall дарегин 2GIS'те ачуу">2GIS'те ачуу</a>
           </article>
         </div>
       </section>
@@ -521,10 +522,10 @@
         <h2 id="dialog-title">Тойго келесизби?</h2>
         <p>Жообуңузду калтырыңыз</p>
         <label>Атыңыз жана фамилияңыз
-          <input type="text" name="guest" autocomplete="name" required="" placeholder="Мисалы: Айжан Садыкова">
+          <input type="text" name="guest" autocomplete="name" required placeholder="Мисалы: Айжан Садыкова">
         </label>
         <div class="choices">
-          <label class="choice"><input type="radio" name="answer" value="yes" required=""><span>Ооба, келем</span></label>
+          <label class="choice"><input type="radio" name="answer" value="yes" required><span>Ооба, келем</span></label>
           <label class="choice"><input type="radio" name="answer" value="no"><span>Келе албайм</span></label>
         </div>
         <button class="submit-button" type="submit">Жооп жөнөтүү</button>
@@ -649,6 +650,5 @@
     });
 
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3a6a48dbca17049',t:'MTc4OTI5NzE2OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; visibility: hidden;" src="./Бегимай _ Кыз узатуу_files/saved_resource.html"></iframe>
-
-</body></html>
+</body>
+</html>
