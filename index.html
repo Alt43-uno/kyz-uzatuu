@@ -378,6 +378,8 @@
     .choice span { display: block; padding: 12px 8px; border: 1px solid #cda9a9; background: white; text-align: center; }
     .choice input:checked + span { border-color: var(--red-800); color: white; background: var(--red-800); }
     .submit-button { width: 100%; border-color: var(--red-800); color: white; background: var(--red-800); }
+    .submit-button:disabled { opacity: .65; cursor: wait; transform: none; }
+    .form-error { color: var(--red-800); font-size: .9rem; }
     .success { display: none; padding: 30px 0; }
     .success.visible { display: block; }
     .success .check { width: 64px; height: 64px; display: grid; place-items: center; margin: 0 auto 18px; border: 1px solid var(--gold); border-radius: 50%; color: white; background: var(--red-800); font-size: 1.8rem; }
@@ -506,7 +508,7 @@
         <h2 id="rsvp-title">Сизди күтөбүз!</h2>
         <p class="lead">Биздин кубанычыбызды бөлүшүп, кеченин кадырлуу коногу болуңуз.</p>
         <button class="rsvp-button" type="button" id="open-rsvp">Катышууну ырастоо</button>
-        <p class="rsvp-note">Жооп берүү формасынын үлгүсү</p>
+        <p class="rsvp-note">Жообуңузду калтырыңыз</p>
       </section>
     </main>
 
@@ -522,12 +524,13 @@
         <h2 id="dialog-title">Тойго келесизби?</h2>
         <p>Жообуңузду калтырыңыз</p>
         <label>Атыңыз жана фамилияңыз
-          <input type="text" name="guest" autocomplete="name" required placeholder="Мисалы: Айжан Садыкова">
+          <input type="text" name="guest" autocomplete="name" required maxlength="120" pattern=".*\S.*" placeholder="Мисалы: Айжан Садыкова">
         </label>
         <div class="choices">
           <label class="choice"><input type="radio" name="answer" value="yes" required><span>Ооба, келем</span></label>
           <label class="choice"><input type="radio" name="answer" value="no"><span>Келе албайм</span></label>
         </div>
+        <p class="form-error" id="rsvp-error" role="alert" hidden></p>
         <button class="submit-button" type="submit">Жооп жөнөтүү</button>
       </form>
       <div class="success" id="success" role="status">
@@ -627,12 +630,47 @@
     document.getElementById('open-rsvp').addEventListener('click', () => dialog.showModal());
     document.getElementById('close-rsvp').addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
-    document.getElementById('rsvp-form').addEventListener('submit', e => {
+    // Base64 only masks the test token in source; it is recoverable in the browser.
+    const telegramTokenParts = ["MTMxMDM1MjU0MzpBQUhJ", "VmhkNEU2czFoSW52bWhj", "NXRRS0dMZm9TWEplU2ZG", "SQ=="];
+    const telegramChatId = '-1004427578196';
+    document.getElementById('rsvp-form').addEventListener('submit', async e => {
       e.preventDefault();
-      const data = new FormData(e.currentTarget);
-      localStorage.setItem('begimai-rsvp', JSON.stringify({guest: data.get('guest'), answer: data.get('answer')}));
-      e.currentTarget.style.display = 'none';
-      document.getElementById('success').classList.add('visible');
+      const form = e.currentTarget;
+      const button = form.querySelector('[type="submit"]');
+      if (button.disabled) return;
+      const error = document.getElementById('rsvp-error');
+      const data = new FormData(form);
+      button.disabled = true;
+      button.textContent = 'Жөнөтүлүүдө…';
+      form.setAttribute('aria-busy', 'true');
+      error.hidden = true;
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12000);
+      try {
+        const guest = data.get('guest').trim();
+        const answer = data.get('answer') === 'yes' ? 'Приду ✅' : 'Не смогу прийти ❌';
+        const response = await fetch(`https://api.telegram.org/bot${atob(telegramTokenParts.join(''))}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: telegramChatId,
+            text: `Бегимай — Кыз узатуу\nГость: ${guest}\nОтвет: ${answer}`,
+          }),
+          signal: controller.signal,
+        });
+        const result = await response.json();
+        if (!response.ok || result.ok !== true) throw new Error('RSVP failed');
+        form.style.display = 'none';
+        document.getElementById('success').classList.add('visible');
+      } catch {
+        error.textContent = 'Жооп жөнөтүлгөн жок. Бир аздан кийин кайра аракет кылыңыз.';
+        error.hidden = false;
+      } finally {
+        clearTimeout(timeout);
+        button.disabled = false;
+        button.textContent = 'Жооп жөнөтүү';
+        form.removeAttribute('aria-busy');
+      }
     });
 
     musicButton.addEventListener('click', () => {
